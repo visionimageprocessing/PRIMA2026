@@ -1,0 +1,24 @@
+# 評価コード（interactive_two_ai.py）用 config — A2 per-slot 形式
+# 各 evaluation が agent_0 / agent_1 を slot ごとに宣言する:
+#   policy_type: coop -> ActorCriticRNN（通常）。checkpoint 必須
+#                solo -> ActorCriticRNNSolo（相手チャンネルをマスク）。checkpoint 必須
+#                dummy -> network なし（STAY + (0,0) pin + value NaN）
+# 各 checkpoint は experiments/<exp>/results/<ts>/ 配下（config.yaml 同梱フォルダ）を指す。
+# ここは shared / independent の cross-pairing（全て coop）。
+
+"evaluations":
+  - "name": "shared0_shared1"
+    "agent_0": {"policy_type": "coop", "checkpoint": "experiments/shared/results/<TIMESTAMP>/params.msgpack"}
+    "agent_1": {"policy_type": "coop", "checkpoint": "experiments/shared/results/<TIMESTAMP>/params.msgpack"}
+
+  - "name": "independent0_independent1"
+    "agent_0": {"policy_type": "coop", "checkpoint": "experiments/independent/results/<TIMESTAMP>/agent0/params.msgpack"}
+    "agent_1": {"policy_type": "coop", "checkpoint": "experiments/independent/results/<TIMESTAMP>/agent1/params.msgpack"}
+
+  - "name": "shared0_independent1"
+    "agent_0": {"policy_type": "coop", "checkpoint": "experiments/shared/results/<TIMESTAMP>/params.msgpack"}
+    "agent_1": {"policy_type": "coop", "checkpoint": "experiments/independent/results/<TIMESTAMP>/agent1/params.msgpack"}
+
+  - "name": "independent0_shared1"
+    "agent_0": {"policy_type": "coop", "checkpoint": "experiments/independent/results/<TIMESTAMP>/agent0/params.msgpack"}
+    "agent_1": {"policy_type": "coop", "checkpoint": "experiments/shared/results/<TIMESTAMP>/params.msgpack"}

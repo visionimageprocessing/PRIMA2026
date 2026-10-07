@@ -1,0 +1,52 @@
+# same-seed AB (A_i + B_i) 評価 — 田中先生依頼: 学習時と同じ(知っている)ペア。
+# layout=cramped_room_3x4, independent models cramped_room_3x4_20260624_204432, eval seed=4000。
+# 現状の cross-seed AB(知らない人)と対比して familiar-partner の効果を見る。
+evaluations:
+  - name: AB_sameseed_cramped_room_3x4_s00
+    agent_0: {policy_type: coop, checkpoint: "experiments/independent/results/cramped_room_3x4_20260624_204432/seed_0/agent0/params.msgpack"}
+    agent_1: {policy_type: coop, checkpoint: "experiments/independent/results/cramped_room_3x4_20260624_204432/seed_0/agent1/params.msgpack"}
+  - name: AB_sameseed_cramped_room_3x4_s01
+    agent_0: {policy_type: coop, checkpoint: "experiments/independent/results/cramped_room_3x4_20260624_204432/seed_1/agent0/params.msgpack"}
+    agent_1: {policy_type: coop, checkpoint: "experiments/independent/results/cramped_room_3x4_20260624_204432/seed_1/agent1/params.msgpack"}
+  - name: AB_sameseed_cramped_room_3x4_s02
+    agent_0: {policy_type: coop, checkpoint: "experiments/independent/results/cramped_room_3x4_20260624_204432/seed_2/agent0/params.msgpack"}
+    agent_1: {policy_type: coop, checkpoint: "experiments/independent/results/cramped_room_3x4_20260624_204432/seed_2/agent1/params.msgpack"}
+  - name: AB_sameseed_cramped_room_3x4_s03
+    agent_0: {policy_type: coop, checkpoint: "experiments/independent/results/cramped_room_3x4_20260624_204432/seed_3/agent0/params.msgpack"}
+    agent_1: {policy_type: coop, checkpoint: "experiments/independent/results/cramped_room_3x4_20260624_204432/seed_3/agent1/params.msgpack"}
+  - name: AB_sameseed_cramped_room_3x4_s04
+    agent_0: {policy_type: coop, checkpoint: "experiments/independent/results/cramped_room_3x4_20260624_204432/seed_4/agent0/params.msgpack"}
+    agent_1: {policy_type: coop, checkpoint: "experiments/independent/results/cramped_room_3x4_20260624_204432/seed_4/agent1/params.msgpack"}
+  - name: AB_sameseed_cramped_room_3x4_s05
+    agent_0: {policy_type: coop, checkpoint: "experiments/independent/results/cramped_room_3x4_20260624_204432/seed_5/agent0/params.msgpack"}
+    agent_1: {policy_type: coop, checkpoint: "experiments/independent/results/cramped_room_3x4_20260624_204432/seed_5/agent1/params.msgpack"}
+  - name: AB_sameseed_cramped_room_3x4_s06
+    agent_0: {policy_type: coop, checkpoint: "experiments/independent/results/cramped_room_3x4_20260624_204432/seed_6/agent0/params.msgpack"}
+    agent_1: {policy_type: coop, checkpoint: "experiments/independent/results/cramped_room_3x4_20260624_204432/seed_6/agent1/params.msgpack"}
+  - name: AB_sameseed_cramped_room_3x4_s07
+    agent_0: {policy_type: coop, checkpoint: "experiments/independent/results/cramped_room_3x4_20260624_204432/seed_7/agent0/params.msgpack"}
+    agent_1: {policy_type: coop, checkpoint: "experiments/independent/results/cramped_room_3x4_20260624_204432/seed_7/agent1/params.msgpack"}
+  - name: AB_sameseed_cramped_room_3x4_s08
+    agent_0: {policy_type: coop, checkpoint: "experiments/independent/results/cramped_room_3x4_20260624_204432/seed_8/agent0/params.msgpack"}
+    agent_1: {policy_type: coop, checkpoint: "experiments/independent/results/cramped_room_3x4_20260624_204432/seed_8/agent1/params.msgpack"}
+  - name: AB_sameseed_cramped_room_3x4_s09
+    agent_0: {policy_type: coop, checkpoint: "experiments/independent/results/cramped_room_3x4_20260624_204432/seed_9/agent0/params.msgpack"}
+    agent_1: {policy_type: coop, checkpoint: "experiments/independent/results/cramped_room_3x4_20260624_204432/seed_9/agent1/params.msgpack"}
+  - name: AB_sameseed_cramped_room_3x4_s10
+    agent_0: {policy_type: coop, checkpoint: "experiments/independent/results/cramped_room_3x4_20260624_204432/seed_10/agent0/params.msgpack"}
+    agent_1: {policy_type: coop, checkpoint: "experiments/independent/results/cramped_room_3x4_20260624_204432/seed_10/agent1/params.msgpack"}
+  - name: AB_sameseed_cramped_room_3x4_s11
+    agent_0: {policy_type: coop, checkpoint: "experiments/independent/results/cramped_room_3x4_20260624_204432/seed_11/agent0/params.msgpack"}
+    agent_1: {policy_type: coop, checkpoint: "experiments/independent/results/cramped_room_3x4_20260624_204432/seed_11/agent1/params.msgpack"}
+  - name: AB_sameseed_cramped_room_3x4_s12
+    agent_0: {policy_type: coop, checkpoint: "experiments/independent/results/cramped_room_3x4_20260624_204432/seed_12/agent0/params.msgpack"}
+    agent_1: {policy_type: coop, checkpoint: "experiments/independent/results/cramped_room_3x4_20260624_204432/seed_12/agent1/params.msgpack"}
+  - name: AB_sameseed_cramped_room_3x4_s13
+    agent_0: {policy_type: coop, checkpoint: "experiments/independent/results/cramped_room_3x4_20260624_204432/seed_13/agent0/params.msgpack"}
+    agent_1: {policy_type: coop, checkpoint: "experiments/independent/results/cramped_room_3x4_20260624_204432/seed_13/agent1/params.msgpack"}
+  - name: AB_sameseed_cramped_room_3x4_s14
+    agent_0: {policy_type: coop, checkpoint: "experiments/independent/results/cramped_room_3x4_20260624_204432/seed_14/agent0/params.msgpack"}
+    agent_1: {policy_type: coop, checkpoint: "experiments/independent/results/cramped_room_3x4_20260624_204432/seed_14/agent1/params.msgpack"}
+  - name: AB_sameseed_cramped_room_3x4_s15
+    agent_0: {policy_type: coop, checkpoint: "experiments/independent/results/cramped_room_3x4_20260624_204432/seed_15/agent0/params.msgpack"}
+    agent_1: {policy_type: coop, checkpoint: "experiments/independent/results/cramped_room_3x4_20260624_204432/seed_15/agent1/params.msgpack"}

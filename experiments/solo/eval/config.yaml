@@ -1,0 +1,38 @@
+# Solo 評価（A2 per-slot 形式）用 config
+#
+# 各 evaluation は agent_0 / agent_1 の policy を slot ごとに宣言する:
+#   policy_type: solo  -> ActorCriticRNNSolo（相手チャンネルをマスク）。checkpoint 必須
+#                coop  -> ActorCriticRNN（通常）。checkpoint 必須
+#                dummy -> network なし。行動 STAY 固定 + (0,0) 壁に pin + value NaN。checkpoint 不要
+#
+# checkpoint は experiments/<exp>/results/<ts>/... または trained_models/... への
+# 相対パス（_REPO_ROOT 基準）か絶対パス。<...TIMESTAMP> は実際の学習結果に置き換える。
+#
+# 6 評価で Alice 側と Bob 側の貢献が出る:
+#   Alice 貢献 = R(coop0_coop1) - R(solo0_coop1)
+#   Bob   貢献 = R(coop0_coop1) - R(coop0_solo1)
+
+"evaluations":
+  - "name": "solo0_alone"
+    "agent_0": {"policy_type": "solo", "checkpoint": "experiments/solo/results/<SOLO0_TIMESTAMP>/seed_0/agent0/params.msgpack"}
+    "agent_1": {"policy_type": "dummy"}
+
+  - "name": "dummy_solo1"
+    "agent_0": {"policy_type": "dummy"}
+    "agent_1": {"policy_type": "solo", "checkpoint": "experiments/solo/results/<SOLO1_TIMESTAMP>/seed_0/agent1/params.msgpack"}
+
+  - "name": "solo0_coop1"
+    "agent_0": {"policy_type": "solo", "checkpoint": "experiments/solo/results/<SOLO0_TIMESTAMP>/seed_0/agent0/params.msgpack"}
+    "agent_1": {"policy_type": "coop", "checkpoint": "trained_models/params_cramped_room_shared_<COOP_TIMESTAMP>.msgpack"}
+
+  - "name": "coop0_solo1"
+    "agent_0": {"policy_type": "coop", "checkpoint": "trained_models/params_cramped_room_shared_<COOP_TIMESTAMP>.msgpack"}
+    "agent_1": {"policy_type": "solo", "checkpoint": "experiments/solo/results/<SOLO1_TIMESTAMP>/seed_0/agent1/params.msgpack"}
+
+  - "name": "solo0_solo1"
+    "agent_0": {"policy_type": "solo", "checkpoint": "experiments/solo/results/<SOLO0_TIMESTAMP>/seed_0/agent0/params.msgpack"}
+    "agent_1": {"policy_type": "solo", "checkpoint": "experiments/solo/results/<SOLO1_TIMESTAMP>/seed_0/agent1/params.msgpack"}
+
+  - "name": "coop0_coop1"
+    "agent_0": {"policy_type": "coop", "checkpoint": "trained_models/params_cramped_room_shared_<COOP_TIMESTAMP>.msgpack"}
+    "agent_1": {"policy_type": "coop", "checkpoint": "trained_models/params_cramped_room_shared_<COOP_TIMESTAMP>.msgpack"}

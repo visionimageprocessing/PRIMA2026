@@ -1,0 +1,41 @@
+"ENV_NAME": "overcooked_v2"
+"ENV_KWARGS":
+  "layout" : "cramped_room"       # 標準 layout のまま。agent_1 は script 側で (0,0) に pin
+  "agent_view_size": null
+  "negative_rewards": False
+  "sample_recipe_on_delivery": False
+  "random_agent_positions": True  # active の初期位置はランダム（dummy は毎 step pin で上書き）
+
+# Solo 学習者にする slot: 0=agent_0 active / agent_1 dummy、1=agent_1 active / agent_0 dummy
+# CLI で上書き可（例: python train.py SOLO_ACTIVE_AGENT=1 で solo_agent1 を学習）
+"SOLO_ACTIVE_AGENT": 0
+
+"LR": 0.00025
+"ANNEAL_LR": True
+"LR_WARMUP": 0.05
+
+"NUM_ENVS": 256
+"NUM_STEPS": 256
+"UPDATE_EPOCHS": 4
+"NUM_MINIBATCHES": 64
+
+"TOTAL_TIMESTEPS": 3e7
+"REW_SHAPING_HORIZON": 1.5e7
+
+"FC_DIM_SIZE": 128
+"GRU_HIDDEN_DIM": 128
+
+"CLIP_EPS": 0.2
+"ENT_COEF": 0.01
+"GAMMA": 0.99
+"GAE_LAMBDA": 0.95
+"SCALE_CLIP_EPS": False
+"VF_COEF": 0.5
+"MAX_GRAD_NORM": 0.25
+"ACTIVATION": "relu"
+"SEED": 200
+"NUM_SEEDS": 16
+
+"ENTITY": null  # 自分の wandb entity に書き換えてから学習を実行
+"PROJECT": "JaxMARL-overcooked-research"
+"WANDB_MODE" : "online"

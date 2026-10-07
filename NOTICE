@@ -1,0 +1,12 @@
+Agent-Centric Analysis of Role Specialization and Cooperative Behavior
+in Multi-Agent Reinforcement Learning (PRIMA 2026)
+
+Copyright 2026 Hiroki Kuwano, Masayuki Tanaka, Takako Yoshida
+Institute of Science Tokyo
+
+Licensed under the Apache License, Version 2.0. See the LICENSE file.
+
+This project builds on JaxMARL (https://github.com/flairox/jaxmarl), which is
+licensed under the Apache License, Version 2.0. The environment class in
+src/overcooked_research/env/overcooked_with_events.py is derived from JaxMARL's
+Overcooked-V2 implementation.

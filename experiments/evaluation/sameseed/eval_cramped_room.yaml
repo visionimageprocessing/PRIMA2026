@@ -1,0 +1,51 @@
+# same-seed CC (C_i vs C_i) 評価 — env手番由来の残余 delivery imbalance 検証用
+# layout=cramped_room, shared models cramped_room_20260624_201519, eval seed=4000 で実行すること
+evaluations:
+  - name: CC_sameseed_cramped_room_s00
+    agent_0: {policy_type: coop, checkpoint: "experiments/shared/results/cramped_room_20260624_201519/seed_0/params.msgpack"}
+    agent_1: {policy_type: coop, checkpoint: "experiments/shared/results/cramped_room_20260624_201519/seed_0/params.msgpack"}
+  - name: CC_sameseed_cramped_room_s01
+    agent_0: {policy_type: coop, checkpoint: "experiments/shared/results/cramped_room_20260624_201519/seed_1/params.msgpack"}
+    agent_1: {policy_type: coop, checkpoint: "experiments/shared/results/cramped_room_20260624_201519/seed_1/params.msgpack"}
+  - name: CC_sameseed_cramped_room_s02
+    agent_0: {policy_type: coop, checkpoint: "experiments/shared/results/cramped_room_20260624_201519/seed_2/params.msgpack"}
+    agent_1: {policy_type: coop, checkpoint: "experiments/shared/results/cramped_room_20260624_201519/seed_2/params.msgpack"}
+  - name: CC_sameseed_cramped_room_s03
+    agent_0: {policy_type: coop, checkpoint: "experiments/shared/results/cramped_room_20260624_201519/seed_3/params.msgpack"}
+    agent_1: {policy_type: coop, checkpoint: "experiments/shared/results/cramped_room_20260624_201519/seed_3/params.msgpack"}
+  - name: CC_sameseed_cramped_room_s04
+    agent_0: {policy_type: coop, checkpoint: "experiments/shared/results/cramped_room_20260624_201519/seed_4/params.msgpack"}
+    agent_1: {policy_type: coop, checkpoint: "experiments/shared/results/cramped_room_20260624_201519/seed_4/params.msgpack"}
+  - name: CC_sameseed_cramped_room_s05
+    agent_0: {policy_type: coop, checkpoint: "experiments/shared/results/cramped_room_20260624_201519/seed_5/params.msgpack"}
+    agent_1: {policy_type: coop, checkpoint: "experiments/shared/results/cramped_room_20260624_201519/seed_5/params.msgpack"}
+  - name: CC_sameseed_cramped_room_s06
+    agent_0: {policy_type: coop, checkpoint: "experiments/shared/results/cramped_room_20260624_201519/seed_6/params.msgpack"}
+    agent_1: {policy_type: coop, checkpoint: "experiments/shared/results/cramped_room_20260624_201519/seed_6/params.msgpack"}
+  - name: CC_sameseed_cramped_room_s07
+    agent_0: {policy_type: coop, checkpoint: "experiments/shared/results/cramped_room_20260624_201519/seed_7/params.msgpack"}
+    agent_1: {policy_type: coop, checkpoint: "experiments/shared/results/cramped_room_20260624_201519/seed_7/params.msgpack"}
+  - name: CC_sameseed_cramped_room_s08
+    agent_0: {policy_type: coop, checkpoint: "experiments/shared/results/cramped_room_20260624_201519/seed_8/params.msgpack"}
+    agent_1: {policy_type: coop, checkpoint: "experiments/shared/results/cramped_room_20260624_201519/seed_8/params.msgpack"}
+  - name: CC_sameseed_cramped_room_s09
+    agent_0: {policy_type: coop, checkpoint: "experiments/shared/results/cramped_room_20260624_201519/seed_9/params.msgpack"}
+    agent_1: {policy_type: coop, checkpoint: "experiments/shared/results/cramped_room_20260624_201519/seed_9/params.msgpack"}
+  - name: CC_sameseed_cramped_room_s10
+    agent_0: {policy_type: coop, checkpoint: "experiments/shared/results/cramped_room_20260624_201519/seed_10/params.msgpack"}
+    agent_1: {policy_type: coop, checkpoint: "experiments/shared/results/cramped_room_20260624_201519/seed_10/params.msgpack"}
+  - name: CC_sameseed_cramped_room_s11
+    agent_0: {policy_type: coop, checkpoint: "experiments/shared/results/cramped_room_20260624_201519/seed_11/params.msgpack"}
+    agent_1: {policy_type: coop, checkpoint: "experiments/shared/results/cramped_room_20260624_201519/seed_11/params.msgpack"}
+  - name: CC_sameseed_cramped_room_s12
+    agent_0: {policy_type: coop, checkpoint: "experiments/shared/results/cramped_room_20260624_201519/seed_12/params.msgpack"}
+    agent_1: {policy_type: coop, checkpoint: "experiments/shared/results/cramped_room_20260624_201519/seed_12/params.msgpack"}
+  - name: CC_sameseed_cramped_room_s13
+    agent_0: {policy_type: coop, checkpoint: "experiments/shared/results/cramped_room_20260624_201519/seed_13/params.msgpack"}
+    agent_1: {policy_type: coop, checkpoint: "experiments/shared/results/cramped_room_20260624_201519/seed_13/params.msgpack"}
+  - name: CC_sameseed_cramped_room_s14
+    agent_0: {policy_type: coop, checkpoint: "experiments/shared/results/cramped_room_20260624_201519/seed_14/params.msgpack"}
+    agent_1: {policy_type: coop, checkpoint: "experiments/shared/results/cramped_room_20260624_201519/seed_14/params.msgpack"}
+  - name: CC_sameseed_cramped_room_s15
+    agent_0: {policy_type: coop, checkpoint: "experiments/shared/results/cramped_room_20260624_201519/seed_15/params.msgpack"}
+    agent_1: {policy_type: coop, checkpoint: "experiments/shared/results/cramped_room_20260624_201519/seed_15/params.msgpack"}

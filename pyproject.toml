@@ -1,0 +1,28 @@
+[project]
+name = "overcooked-research"
+version = "0.1.0"
+description = "Multi-Agent Reinforcement Learning research on Overcooked-V2"
+authors = [{ name = "Hiroki Kuwano" }]
+requires-python = ">=3.10"
+
+# 依存は jaxmarl + 直接 import するもののみ。
+# jaxmarl が jax / flax / chex / distrax / optax / brax / mujoco / flashbax / pettingzoo / gymnax /
+# safetensors / scipy / numpy / matplotlib / pillow 等を transitively 引き込むので、ここで再宣言しない。
+dependencies = [
+    # OvercookedV2WithEvents が上流の step_env / step_agents / process_interact を override
+    # しているため、jaxmarl の API 変更で静かに壊れるリスクがある。当面 0.1.0 で pin する。
+    "jaxmarl==0.1.0",
+    "hydra-core>=1.3.2",
+    "omegaconf>=2.3.0",
+    "wandb",
+    "tqdm>=4.66.0",
+    "imageio",
+    "msgpack",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
