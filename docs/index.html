@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Agent-Centric Analysis of Role Specialization and Cooperative Behavior in MARL</title>
+<meta name="description" content="PRIMA 2026 paper: how single-agent, shared-parameter, and independent-parameter training shape role specialization and cooperative behavior in agent-centric multi-agent reinforcement learning.">
+<meta property="og:title" content="Agent-Centric Analysis of Role Specialization and Cooperative Behavior in Multi-Agent Reinforcement Learning">
+<meta property="og:description" content="PRIMA 2026 (Springer LNAI). Hiroki Kuwano, Masayuki Tanaka, Takako Yoshida.">
+<meta property="og:type" content="website">
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #faf9f6;
+    --fg: #242424;
+    --muted: #555555;
+    --line: #d5d3cf;
+    --soft: #f0efeb;
+    --accent: #24528a;
+    --accent-fg: #ffffff;
+    --card: #ffffff;
+    --a: #222222;
+    --b: #2a9d2a;
+    --c: #d62728;
+    --d: #1f77b4;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    font-size: 18px;
+    line-height: 1.7;
+  }
+  main {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 48px 24px 64px;
+  }
+  /* Text sits in a readable column; only the figure uses the full width. */
+  .col { max-width: 720px; margin-left: auto; margin-right: auto; }
+  header { text-align: center; }
+  h1 {
+    font-size: clamp(1.45rem, 3.3vw, 2rem);
+    line-height: 1.3;
+    margin: 0 0 22px;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+  .authors { font-size: 1.1rem; margin: 0 0 4px; }
+  .authors .au { white-space: nowrap; margin: 0 0.5em; }
+  .orcid {
+    display: inline-block;
+    width: 1.25rem; height: 1.25rem;
+    border-radius: 50%;
+    background: #a6ce39;
+    color: #fff;
+    font-size: 0.68rem;
+    font-weight: 700;
+    line-height: 1.25rem;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: 0.15em;
+    margin-left: 0.2em;
+  }
+  .affil { color: var(--muted); margin: 0 0 8px; }
+  .venue { color: var(--muted); margin: 0 0 26px; font-size: 1rem; line-height: 1.6; text-wrap: pretty; }
+  .venue strong { color: var(--fg); }
+  .venue .line { display: block; }
+  .buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.45em;
+    padding: 9px 20px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid var(--accent);
+  }
+  .btn.primary { background: var(--accent); color: var(--accent-fg); }
+  .btn.secondary { background: transparent; color: var(--accent); }
+  .btn svg { width: 1.1em; height: 1.1em; fill: currentColor; }
+  section { margin-top: 60px; }
+  h2 { font-size: 24px; line-height: 1.3; margin: 0 0 16px; }
+  p { margin: 0 0 14px; }
+  .abstract { text-align: left; text-wrap: pretty; }
+  figure { margin: 0; }
+  .fig-row {
+    display: grid;
+    grid-template-columns: 1.29fr 0.8fr 1.51fr;
+    gap: 16px;
+    align-items: end;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 12px;
+  }
+  .fig-row img { width: 100%; height: auto; display: block; }
+  .fig-row .sub { text-align: center; font-size: 15px; color: #333333; margin-top: 4px; }
+  figcaption, .tcap { color: var(--muted); font-size: 16px; line-height: 1.6; text-wrap: pretty; }
+  figcaption { margin-top: 12px; }
+  .types {
+    display: grid; grid-template-columns: 1fr; gap: 4px;
+    margin: 0 0 22px; padding: 0; list-style: none;
+  }
+  .types li { display: grid; grid-template-columns: 2.8em 1fr; align-items: baseline; }
+  .tA { color: var(--a); } .tB { color: var(--b); } .tC { color: var(--c); } .tD { color: var(--d); }
+  .tcap { margin: 0 0 10px; }
+  .scroll-hint { display: none; color: var(--muted); font-size: 14px; text-align: right; margin: 0 0 4px; }
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table {
+    border-collapse: collapse;
+    margin: 0 auto;
+    font-variant-numeric: tabular-nums;
+    font-size: 16px;
+    min-width: 560px;
+  }
+  th, td { padding: 8px 14px; text-align: center; white-space: nowrap; }
+  thead th { border-top: 2px solid var(--fg); border-bottom: 1px solid var(--fg); }
+  tbody.single td, tbody.single th { border-bottom: 1px solid var(--fg); }
+  tbody.pair tr:last-child td, tbody.pair tr:last-child th { border-bottom: 2px solid var(--fg); }
+  th.group { text-align: left; font-weight: 600; color: var(--muted); }
+  td.empty { background: var(--soft); }
+  pre {
+    position: relative;
+    background: var(--soft);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 44px 18px 16px;
+    overflow-x: auto;
+    font-size: 14.5px;
+    line-height: 1.55;
+    margin: 0;
+  }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  .copy {
+    position: absolute; top: 10px; right: 10px;
+    font: inherit; font-size: 13px;
+    padding: 3px 10px;
+    border-radius: 4px;
+    border: 1px solid var(--line);
+    background: var(--card); color: var(--fg);
+    cursor: pointer;
+  }
+  footer {
+    margin-top: 64px; padding-top: 18px;
+    border-top: 1px solid var(--line);
+    color: var(--muted); font-size: 15px; text-align: center;
+  }
+  a { color: var(--accent); }
+  .nowrap { white-space: nowrap; }
+  /* Title breaks follow the paper. On phones the second line is split once more after "and". */
+  br.narrow { display: none; }
+  @media (max-width: 640px) {
+    h1 { font-size: min(1.45rem, 5vw); }
+    br.narrow { display: inline; }
+    body { font-size: 17px; }
+    main { padding: 32px 20px 48px; }
+    .fig-row { grid-template-columns: 1fr; gap: 24px; }
+    .fig-row figure { width: 100%; max-width: 440px; margin-left: auto; margin-right: auto; }
+    th, td { padding: 10px 12px; }
+    .scroll-hint { display: block; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1><span class="nowrap">Agent-Centric</span> Analysis of<br class="wide"> Role Specialization and<br class="narrow"> Cooperative Behavior in<br class="wide"> <span class="nowrap">Multi-Agent</span> Reinforcement Learning</h1>
+    <p class="authors">
+      <span class="au">Hiroki Kuwano</span>
+      <span class="au">Masayuki Tanaka<a class="orcid" href="https://orcid.org/0000-0002-5756-1904" aria-label="ORCID of Masayuki Tanaka" title="ORCID 0000-0002-5756-1904">iD</a></span>
+      <span class="au">Takako Yoshida<a class="orcid" href="https://orcid.org/0000-0001-9287-7499" aria-label="ORCID of Takako Yoshida" title="ORCID 0000-0001-9287-7499">iD</a></span>
+    </p>
+    <p class="affil">Institute of Science Tokyo</p>
+    <p class="venue">
+      <span class="line"><strong>PRIMA 2026</strong> — 27th International Conference on Principles and Practice of <span class="nowrap">Multi-Agent</span> Systems</span>
+      <span class="line"><span class="nowrap">Kumamoto, Japan</span> · <span class="nowrap">December 14–17, 2026</span></span>
+      <span class="line">Springer Lecture Notes in Artificial Intelligence (to appear)</span>
+    </p>
+    <div class="buttons">
+      <a class="btn primary" href="https://github.com/visionimageprocessing/PRIMA2026">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        Code
+      </a>
+      <a class="btn secondary" href="#citation">BibTeX</a>
+    </div>
+  </header>
+
+  <section id="abstract" class="col">
+    <h2>Abstract</h2>
+    <p class="abstract">We investigate how training regimes affect cooperative agent behavior under <span class="nowrap">agent-centric</span> observations. In the <span class="nowrap">Overcooked-V2</span> cooking task, we trained agents under three regimes: <span class="nowrap">single-agent</span> training, <span class="nowrap">two-agent</span> training with shared policy parameters, and <span class="nowrap">two-agent</span> training with independent policy parameters. We evaluated all possible pairings between trained agents. The policy from <span class="nowrap">single-agent</span> training achieved the highest reward in <span class="nowrap">single-agent</span> evaluation, but two such policies interfered with each other in <span class="nowrap">two-agent</span> evaluation. <span class="nowrap">Shared-parameter</span> pairs achieved the highest team reward among all <span class="nowrap">two-agent</span> pairings and maintained stable performance with different partners. <span class="nowrap">Independent-parameter</span> pairs showed clear role specialization, but their performance decreased when paired with different agents. These results show that cooperative behavior and role specialization are shaped by the training regime and by whether the partner was encountered during training.</p>
+  </section>
+
+  <section id="setup">
+    <h2 class="col">Experimental Setup</h2>
+    <figure>
+      <div class="fig-row">
+        <figure>
+          <img src="img/fig1a_environment.png" alt="Overcooked-V2 cramped_room 3x4 layout with two agents, onions, a pot, plates and a delivery cell; three onions are cooked, plated and delivered for a team reward of +20." width="1294" height="1415">
+          <div class="sub">(a) Environment</div>
+        </figure>
+        <figure>
+          <img src="img/fig1b_training.png" alt="Three training regimes: single-agent training yields A, two-agent training with shared parameters yields B, and two-agent training with independent parameters yields C and D." width="798" height="1415">
+          <div class="sub">(b) Training phase</div>
+        </figure>
+        <figure>
+          <img src="img/fig1c_evaluation.png" alt="Evaluation grid: each of A, B, C and D is evaluated alone, and every pair of agent types is evaluated together." width="1511" height="1415">
+          <div class="sub">(c) Evaluation phase</div>
+        </figure>
+      </div>
+      <figcaption class="col">Figure 1. Experimental setup: (a) the <span class="nowrap">Overcooked-V2</span> environment and task, (b) the three training regimes yielding agent types A–D, and (c) the evaluation grid over all pairings.</figcaption>
+    </figure>
+  </section>
+
+  <section id="results" class="col">
+    <h2>Results</h2>
+    <ul class="types">
+      <li><b class="tA">A</b><span><span class="nowrap">single-agent</span> training</span></li>
+      <li><b class="tB">B</b><span><span class="nowrap">two-agent</span> training with shared policy parameters</span></li>
+      <li><b><span class="tC">C</span>, <span class="tD">D</span></b><span><span class="nowrap">two-agent</span> training with independent policy parameters (player&nbsp;0, player&nbsp;1)</span></li>
+    </ul>
+    <p class="tcap" id="tab1cap">Table 1. Team reward (mean ± std) in the evaluation matrix. Rows and columns indicate agent types.</p>
+    <p class="scroll-hint" aria-hidden="true">Scroll sideways to see all columns →</p>
+    <div class="table-wrap">
+      <table aria-describedby="tab1cap">
+        <thead>
+          <tr><th></th><th></th><th class="tA">A</th><th class="tB">B</th><th class="tC">C</th><th class="tD">D</th></tr>
+        </thead>
+        <tbody class="single">
+          <tr><th class="group" colspan="2">single-agent</th><td>397.0 ± 44.2</td><td>113.4 ± 113.9</td><td>34.2 ± 88.8</td><td>26.4 ± 90.9</td></tr>
+        </tbody>
+        <tbody class="pair">
+          <tr><th class="group" rowspan="4">two-agent</th><th class="tA">A</th><td>35.6 ± 29.9</td><td>97.4 ± 58.9</td><td>92.2 ± 57.6</td><td>102.8 ± 64.0</td></tr>
+          <tr><th class="tB">B</th><td class="empty"></td><td>374.4 ± 102.6</td><td>241.8 ± 124.1</td><td>248.4 ± 132.9</td></tr>
+          <tr><th class="tC">C</th><td class="empty"></td><td class="empty"></td><td>194.7 ± 183.3</td><td>170.9 ± 179.6</td></tr>
+          <tr><th class="tD">D</th><td class="empty"></td><td class="empty"></td><td class="empty"></td><td>188.1 ± 191.1</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="citation" class="col">
+    <h2>Citation</h2>
+    <pre><button class="copy" type="button" data-target="bib">Copy</button><code id="bib">@inproceedings{kuwano2026agentcentric,
+  title     = {Agent-Centric Analysis of Role Specialization and Cooperative
+               Behavior in Multi-Agent Reinforcement Learning},
+  author    = {Kuwano, Hiroki and Tanaka, Masayuki and Yoshida, Takako},
+  booktitle = {PRIMA 2026: Principles and Practice of Multi-Agent Systems},
+  series    = {Lecture Notes in Artificial Intelligence},
+  publisher = {Springer},
+  year      = {2026}
+}</code></pre>
+  </section>
+
+  <footer class="col">
+    Institute of Science Tokyo · Code released under the Apache License 2.0
+  </footer>
+</main>
+<script>
+  document.querySelectorAll(".copy").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var text = document.getElementById(btn.dataset.target).innerText;
+      var done = function () { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = "Copy"; }, 1500); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, function () {});
+      } else {
+        var r = document.createRange(); r.selectNodeContents(document.getElementById(btn.dataset.target));
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        try { document.execCommand("copy"); done(); } catch (e) {}
+      }
+    });
+  });
+</script>
+</body>
+</html>
